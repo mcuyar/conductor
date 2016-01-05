@@ -8,22 +8,22 @@ class BaseProvisioner
       return
     end
 
-    shell_provision(%{
-      # bash #{@scripts}/system.sh
-      # bash #{@scripts}/grub.sh
-      # bash #{@scripts}/python-pip.sh
-      # bash #{@scripts}/mysql.sh
-      # bash #{@scripts}/postgresql.sh
-      bash #{@scripts}/php.sh
-      # bash #{@scripts}/nginx.sh
-      # bash #{@scripts}/composer.sh
-      # bash #{@scripts}/redis.sh
-      # bash #{@scripts}/memcache.sh
-      # bash #{@scripts}/sqlite.sh
-      # bash #{@scripts}/nodejs.sh
-      # bash #{@scripts}/beanstalkd.sh
-      #bash #{@scripts}/xdebug.sh
-    }, nil, true)
+    # shell_provision(%{
+    #   bash #{@scripts}/system.sh
+    #   bash #{@scripts}/grub.sh
+    #   bash #{@scripts}/mysql.sh
+    #   bash #{@scripts}/postgresql.sh
+    #   bash #{@scripts}/php.sh
+    #   bash #{@scripts}/nginx.sh
+    #   bash #{@scripts}/composer.sh
+    #   bash #{@scripts}/redis.sh
+    #   bash #{@scripts}/memcache.sh
+    #   bash #{@scripts}/sqlite.sh
+    #   bash #{@scripts}/nodejs.sh
+    #   bash #{@scripts}/beanstalkd.sh
+    #   bash #{@scripts}/xdebug.sh
+    #   bash #{@scripts}/python-pip.sh
+    # }, nil, true)
 
     # Minimize The Disk Image
     shell_provision(%{

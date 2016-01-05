@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-apt-get remove -y python-pip
+dir=/tmp/python
+
+# Install Python Pip
+mkdir $dir
+cd $dir
 wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 python get-pip.py
-
-#pip install requests[security]
+rm -r $dir

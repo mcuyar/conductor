@@ -30,7 +30,7 @@ class AmazonWebServices
   def provision
 
     if args.find?('install', false)
-      shell_provision("bash #{@scripts}/awscli.sh", nil, false)
+      shell_provision("bash #{@scripts}/awscli.sh", nil, true)
     end
 
   end

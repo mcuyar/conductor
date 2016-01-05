@@ -4,15 +4,15 @@
 wget xdebug.org/files/xdebug-2.4.0rc3.tgz -P /tmp/xdebug
 cd /tmp/xdebug
 tar -xvzf xdebug-2.4.0rc3.tgz
-cd xdebug-2.4.0RC3
+cd /tmp/xdebug/xdebug-2.4.0RC3
 phpize
-bash ./configure
+./configure
 make
 cp modules/xdebug.so /usr/lib/php/20151012
 
 echo "zend_extension = /usr/lib/php/20151012/xdebug.so" >> '/etc/php/7.0/cli/php.ini'
 
- Configure
+# Configure
 config='/etc/php/7.0/fpm/conf.d/20-xdebug.ini'
 touch $config
 
