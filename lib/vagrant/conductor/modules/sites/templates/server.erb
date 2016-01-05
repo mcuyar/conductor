@@ -1,0 +1,53 @@
+server {
+    listen 80;
+    listen 443 ssl;
+
+    server_name <%= site["map"] %>;
+    root <%= site["to"] %>;
+
+    ssl_certificate     /etc/ssl/<%= site["map"] %>.crt;
+    ssl_certificate_key /etc/ssl/<%= site["map"] %>.key;
+
+    index index.html index.htm index.php;
+
+    charset utf-8;
+
+    location / {
+        <% if site.find?("ssl", "") == 'force' %>
+            if ( \$scheme != 'https') { rewrite ^ https://\$host\$request_uri? permanent; }
+        <% elsif site.find?("ssl", false) != true %>
+            if ( \$scheme != 'http') { rewrite ^ http://\$host\$request_uri? permanent; }
+        <% end %>
+        try_files \$uri \$uri/ /index.php?\$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    access_log off;
+    error_log  /var/log/nginx/<%= site["map"] %>-error.log error;
+
+    error_page 404 /index.php;
+
+    sendfile off;
+
+    location ~ \.php$ {
+        <% fastcgi.each do |key, value| %>
+        fastcgi_<%= key %> <%= value %>;
+        <% end %>
+
+        include fastcgi_params;
+
+        <% php_values.each do |key, value| %>
+        fastcgi_param PHP_VALUE \"<%= key %>=<%= value %>\";
+        <% end %>
+
+        <% variables.each do |key, value| %>
+        fastcgi_param <%= key %> <%= value %>;
+        <% end %>
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}

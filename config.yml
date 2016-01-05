@@ -1,0 +1,20 @@
+---
+hostname: "conductor"
+box: bento/ubuntu-14.04
+ip: "192.168.10.10"
+memory: 2048
+cpus: 1
+
+forward_ports:
+  http: 80:8000
+  mysql: 3306:33060
+  postgresql: 5432:54320
+
+_base:
+  install: true
+
+# ------------------------------------------------------
+# AWS CLI
+# ------------------------------------------------------
+aws:
+  install: false

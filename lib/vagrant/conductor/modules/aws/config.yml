@@ -1,0 +1,10 @@
+classname: AmazonWebServices
+
+install: false
+
+profile:
+  name: default
+  access_key: N/A
+  access_secret: N/A
+  region: us-east-1
+  output: text

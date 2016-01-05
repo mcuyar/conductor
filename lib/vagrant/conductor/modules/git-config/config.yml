@@ -1,0 +1,5 @@
+---
+classname: GitConfig
+
+colors.ui: "true"
+push.default: simple
