@@ -12,11 +12,15 @@ cp modules/xdebug.so /usr/lib/php/20151012
 
 echo "zend_extension = /usr/lib/php/20151012/xdebug.so" >> '/etc/php/7.0/cli/php.ini'
 
-# Configure
-config='/etc/php/7.0/fpm/conf.d/20-xdebug.ini'
-touch $config
+# Generate Config
+php_dir="/etc/php/7.0"
+ini="$php_dir/mods-available/xdebug.ini"
 
-echo "xdebug.remote_enable = 1" >> $config
-echo "xdebug.remote_connect_back = 1" >> $config
-echo "xdebug.remote_port = 9000" >> $config
-echo "xdebug.max_nesting_level = 512" >> $config
+if [ ! -f $ini ]; then touch $ini; fi
+
+echo "zend_extension = /usr/lib/php/20151012/xdebug.so" > $ini
+
+#ln -fs $ini "$php_dir/cli/conf.d/20-xdebug.ini"
+ln -fs $ini "$php_dir/fpm/conf.d/20-xdebug.ini"
+
+service php7.0-fpm restart

@@ -10,7 +10,7 @@ apt-get update
 
 # Install PHP
 apt-get install -y --force-yes \
-php7.0-dev \
+php7.0 \
 php7.0-cli \
 php7.0-fpm \
 php-pgsql \
@@ -21,6 +21,7 @@ php-curl \
 php-imap \
 php-mysql \
 php-memcached \
+php7.0-mcrypt \
 php7.0-readline
 
 # Set Some PHP CLI Settings
