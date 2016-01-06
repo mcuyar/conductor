@@ -10,7 +10,9 @@ phpize
 make
 cp modules/xdebug.so /usr/lib/php/20151012
 
-echo "zend_extension = /usr/lib/php/20151012/xdebug.so" >> '/etc/php/7.0/cli/php.ini'
+# Cleanup
+cd /tmp
+rm -rf xdebug
 
 # Generate Config
 php_dir="/etc/php/7.0"
@@ -20,7 +22,6 @@ if [ ! -f $ini ]; then touch $ini; fi
 
 echo "zend_extension = /usr/lib/php/20151012/xdebug.so" > $ini
 
-#ln -fs $ini "$php_dir/cli/conf.d/20-xdebug.ini"
 ln -fs $ini "$php_dir/fpm/conf.d/20-xdebug.ini"
 
 service php7.0-fpm restart
